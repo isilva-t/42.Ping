@@ -3,3 +3,4 @@ ft_ping
 output.txt
 *.o
 *.swp
+help.h

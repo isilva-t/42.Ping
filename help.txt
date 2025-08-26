@@ -1,0 +1,10 @@
+Usage: ft_ping [OPTION] HOST
+Send ICMP ECHO_REQUEST packets to network hosts.
+
+Options:
+  -v, --verbose              verbose output
+  -?, --help                 display this help and exit
+
+HOST can be an IPv4 address or hostname.
+
+Report bugs to isilva-t.
