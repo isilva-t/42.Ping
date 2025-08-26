@@ -4,21 +4,29 @@ int main(int ac, char **av)
 	struct ping_flags flags = {0};
 	int opt;
 
+	int i = 0;
 	while ((opt = getopt(ac, av, "v?")) != -1) {
+		i++;
+		//printf ("opt is: %d\n", opt);
+		//printf("optopt %d\n", optopt);
+		if (optopt != 0) {
+			printf("Try './ft_ping -?' for more information.\n");
+			return 0;
+		}
 		switch (opt) {
 			case 'v':
 				flags.verbose = 1;
 				continue;
 			case '?':
+				if(i == 1) {
+					printf("%s", help_text);
+					return 0;
+				}
 				flags.help = 1;
 				continue;	
 			default:
 				continue;				
 		}
-	}
-	if(optopt == '-') {
-		printf("Try './ft_ping -?' for more information.\n");
-		return 0;
 	}
 
 
