@@ -6,6 +6,7 @@
 #include "../help.h"
 #include <stdint.h>
 #include <sysexits.h>
+#include <string.h>
 
 struct ping_flags {
    uint8_t verbose	: 1;  // -v flag

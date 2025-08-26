@@ -1,6 +1,10 @@
 #include "ft_ping.h"
 int main(int ac, char **av)
 {
+	char *last_slash = strrchr(av[0], '/');
+	if (last_slash)
+		av[0] = last_slash + 1;
+
 	struct ping_flags flags = {0};
 	int opt;
 
@@ -10,7 +14,7 @@ int main(int ac, char **av)
 		//printf ("opt is: %d\n", opt);
 		//printf("optopt %d\n", optopt);
 		if (optopt != 0) {
-			printf("Try './ft_ping -?' for more information.\n");
+			printf("Try '%s -?' for more information.\n", av[0]);
 			return EX_USAGE;
 		}
 		switch (opt) {
