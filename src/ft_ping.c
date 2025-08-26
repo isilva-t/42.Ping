@@ -11,7 +11,7 @@ int main(int ac, char **av)
 		//printf("optopt %d\n", optopt);
 		if (optopt != 0) {
 			printf("Try './ft_ping -?' for more information.\n");
-			return 0;
+			return EX_USAGE;
 		}
 		switch (opt) {
 			case 'v':
@@ -28,7 +28,10 @@ int main(int ac, char **av)
 				continue;				
 		}
 	}
-
+	if(flags.help) {
+		printf("%s", help_text);
+		return 0;
+	}
 
 	(void)flags;
 	if (optind < ac) {
