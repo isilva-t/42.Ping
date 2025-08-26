@@ -1,7 +1,7 @@
 NAME = ft_ping
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I inc
+CFLAGS = -Wall -Wextra -Werror -I inc -g
 
 SRCDIR = src
 OBJDIR = obj
