@@ -25,7 +25,8 @@
 - [ ] Display per-packet results: "64 bytes from IP: icmp_seq=X ttl=Y time=Z ms"
 - [ ] Handle timeout cases (no reply received)
 - [ ] Display final statistics on exit (packets sent/received, packet loss %, RTT min/avg/max/mdev)
-- [ ] Handle Ctrl+C gracefully with statistics
+- [x] Handle Ctrl+C gracefully 
+- [ ]               with statistics
 
 ### Verbose Mode (-v)
 - [ ] Show additional packet information
