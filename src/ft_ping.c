@@ -5,15 +5,19 @@ void	print_help_exit(char *av0) {
 	exit(EX_USAGE);
 }
 
-int main(int ac, char **av)
-{
+void	help_and_exit() {
+	printf("%s", help_text);
+	exit(0);
+}
+
+void	handle_options(int ac, char **av, struct ping_flags *flags) {
+	if (!av || !flags) { return; }
+
 	char *last_slash = strrchr(av[0], '/');
 	if (last_slash)
 		av[0] = last_slash + 1;
 
-	struct ping_flags flags = {0};
 	int opt;
-
 	int i = 0;
 	while ((opt = getopt(ac, av, "v?")) != -1) {
 		i++;
@@ -24,25 +28,28 @@ int main(int ac, char **av)
 		}
 		switch (opt) {
 			case 'v':
-				flags.verbose = 1;
+				flags->verbose = 1;
 				continue;
 			case '?':
+				// edge case when -? is first option
 				if(i == 1) {
-					printf("%s", help_text);
-					return 0;
+					help_and_exit();
 				}
-				flags.help = 1;
+				flags->help = 1;
 				continue;	
 			default:
 				continue;				
 		}
 	}
-	if(flags.help) {
-		printf("%s", help_text);
-		return 0;
+	if(flags->help) {
+		help_and_exit();
 	}
+}
 
-	(void)flags;
+int main(int ac, char **av)
+{
+	struct ping_flags flags = {0};
+	handle_options(ac, av, &flags);
 	if (optind < ac) {
 		printf("target hostname/IP: %s\n", av[optind]);
 	} else {
