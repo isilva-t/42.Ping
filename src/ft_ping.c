@@ -1,4 +1,10 @@
 #include "ft_ping.h"
+
+void	print_help_exit(char *av0) {
+	printf("Try '%s -?' for more information.\n", av0);
+	exit(EX_USAGE);
+}
+
 int main(int ac, char **av)
 {
 	char *last_slash = strrchr(av[0], '/');
@@ -14,8 +20,7 @@ int main(int ac, char **av)
 		//printf ("opt is: %d\n", opt);
 		//printf("optopt %d\n", optopt);
 		if (optopt != 0) {
-			printf("Try '%s -?' for more information.\n", av[0]);
-			return EX_USAGE;
+			print_help_exit(av[0]);
 		}
 		switch (opt) {
 			case 'v':
@@ -41,7 +46,8 @@ int main(int ac, char **av)
 	if (optind < ac) {
 		printf("target hostname/IP: %s\n", av[optind]);
 	} else {
-		printf("No hostname provided\n");
+		printf("%s: missing host operand\n", av[0]);
+		print_help_exit(av[0]);
 	}
 	return 0;
 }
