@@ -10,6 +10,11 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 
+// for getaddrinfo()
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
 struct ping_flags {
    uint8_t verbose	: 1;  // -v flag
    uint8_t help		: 1;  // -? flag
