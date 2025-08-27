@@ -9,6 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <netinet/in.h>
+#include <signal.h>
 
 // for getaddrinfo()
 #include <sys/types.h>

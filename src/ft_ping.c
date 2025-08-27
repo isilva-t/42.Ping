@@ -1,5 +1,7 @@
 #include "ft_ping.h"
 
+static volatile int keep_running = 1;
+
 void	print_help_exit(char *av0) {
 	printf("Try '%s -?' for more information.\n", av0);
 	exit(EX_USAGE);
@@ -66,6 +68,11 @@ int	resolve_target(const char *target, struct in_addr *dest_ip) {
 	return -1;
 }
 
+void handle_sigint(int sig) {
+	keep_running = 0;
+	(void)sig;
+}	
+
 int main(int ac, char **av)
 {
 	struct ping_flags flags = {0};
@@ -77,6 +84,12 @@ int main(int ac, char **av)
 			exit(1);
 		}
 		printf("PING %s (%s) x(y) bytes of data.\n", av[optind], inet_ntoa(dest_ip));
+		signal(SIGINT, handle_sigint);
+		while(keep_running) {
+			printf("here will be info on result\n");
+			sleep(1);
+		}
+		printf("--- %s statistics ---\n", av[0]);
 	} else {
 		printf("%s: missing host operand\n", av[0]);
 		print_help_exit(av[0]);
