@@ -46,12 +46,21 @@ void	handle_options(int ac, char **av, struct ping_flags *flags) {
 	}
 }
 
+int	resolve_target(const char *target, struct in_addr *dest_ip) {
+	if (!target || !dest_ip) { return 1; }
+
+	printf("target hostname/IP: %s\n", target);
+	return 0;
+}
+
 int main(int ac, char **av)
 {
 	struct ping_flags flags = {0};
 	handle_options(ac, av, &flags);
 	if (optind < ac) {
-		printf("target hostname/IP: %s\n", av[optind]);
+		struct in_addr dest_ip = {0};
+		if(resolve_target(av[optind], &dest_ip) != 0) {
+		}
 	} else {
 		printf("%s: missing host operand\n", av[0]);
 		print_help_exit(av[0]);

@@ -8,6 +8,7 @@
 #include <sysexits.h>
 #include <string.h>
 #include <stdlib.h>
+#include <netinet/in.h>
 
 struct ping_flags {
    uint8_t verbose	: 1;  // -v flag
@@ -19,6 +20,5 @@ struct ping_flags {
    uint8_t res1		: 1;
    uint8_t res2		: 1;
 } __attribute__((packed));
-
 
 #endif
