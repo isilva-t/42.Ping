@@ -15,6 +15,9 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
+// for inet_ntoa()
+#include <arpa/inet.h>
+
 struct ping_flags {
    uint8_t verbose	: 1;  // -v flag
    uint8_t help		: 1;  // -? flag

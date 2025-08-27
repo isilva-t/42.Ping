@@ -49,8 +49,6 @@ void	handle_options(int ac, char **av, struct ping_flags *flags) {
 int	resolve_target(const char *target, struct in_addr *dest_ip) {
 	if (!target || !dest_ip) { return 1; }
 
-	printf("target hostname/IP: %s\n", target);
-	
 	struct addrinfo *result = NULL; 
 	struct addrinfo hints = {0};
 	hints.ai_family = AF_INET;
@@ -78,6 +76,7 @@ int main(int ac, char **av)
 			printf("%s: unknown host\n", av[0]);
 			exit(1);
 		}
+		printf("PING %s (%s) x(y) bytes of data.\n", av[optind], inet_ntoa(dest_ip));
 	} else {
 		printf("%s: missing host operand\n", av[0]);
 		print_help_exit(av[0]);
