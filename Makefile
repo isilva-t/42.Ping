@@ -6,7 +6,10 @@ CFLAGS = -Wall -Wextra -Werror -I inc -g
 SRCDIR = src
 OBJDIR = obj
 
-SOURCES = ft_ping.c
+SOURCES = ft_ping.c \
+	  00_handle_options.c \
+	  10_resolve_target.c \
+	  90_helpers.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
 

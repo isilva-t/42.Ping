@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include "../help.h"
+
 #include <stdint.h>
 #include <sysexits.h>
 #include <string.h>
@@ -30,4 +30,13 @@ struct ping_flags {
    uint8_t res2		: 1;
 } __attribute__((packed));
 
+//90_helpers
+void	print_help_exit(char *av0);
+void	help_and_exit(); 
+
+//00_handle_options
+void	handle_options(int ac, char **av, struct ping_flags *flags);
+
+//10_resolve_targets
+int	    resolve_target(const char *target, struct in_addr *dest_ip);
 #endif
