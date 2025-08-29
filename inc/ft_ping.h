@@ -19,6 +19,19 @@
 // for inet_ntoa()
 #include <arpa/inet.h>
 
+// ICMP packet structure
+struct icmp_packet {
+	uint8_t		type;		// ICMP type (8 for echo request)
+	uint8_t		code;		// ICMP code (0 for echo request)  
+	uint16_t	checksum;	// Checksum (calculated)
+	uint16_t	id;			// Identifier (usually process ID)
+	uint16_t	sequence;	// Sequence number
+	char		data[16];	// Data payload
+} __attribute__((packed));
+
+#define ICMP_ECHO_REQUEST	8
+#define ICMP_ECHO_REPLY		0
+
 struct ping_flags {
    uint8_t verbose	: 1;  // -v flag
    uint8_t help		: 1;  // -? flag
