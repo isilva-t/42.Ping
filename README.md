@@ -1,4 +1,10 @@
-# ft_ping - TODO Checklist
+# 42 Ping
+
+Status: 🚧 In Development
+
+Replication of GNU ping in C to learn about ICMP packets
+
+### TODO Checklist
 
 ## ✅ COMPLETED
 - [x] Basic project structure (Makefile, headers, main)
