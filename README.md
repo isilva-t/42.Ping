@@ -4,6 +4,8 @@ Status: 🚧 In Development
 
 Replication of GNU ping in C to learn about ICMP packets
 
+![ping](ping.jpg)
+
 ### TODO Checklist
 
 ## ✅ COMPLETED
