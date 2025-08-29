@@ -28,7 +28,7 @@ void	create_icmp_packet(struct icmp_packet *packet, uint16_t seq) {
 	packet->sequence = seq;
 
 	for (int i = 0; i < DATA_LEN ; i++) {
-		packet->data[i] = 1;
+		packet->data[i] = 0;
 	}
 }
 
@@ -43,11 +43,13 @@ uint8_t	calc_checksum(struct icmp_packet *packet, uint16_t *res) {
 	uint32_t len = sizeof(struct icmp_packet) >> 1;
 	uint32_t i = 0;
 
+	printf("len = %d\n", len);
 	uint16_t two_byte_word = 0;
 	for(i = 0; i < len; i += 2) {
 		two_byte_word = 0;
 		two_byte_word = (data[i] << 8) | data[i + 1];
 		sum += two_byte_word;
+		printf("i: %d\n", i);
 	}
 
 	if (i < len) {
@@ -59,6 +61,7 @@ uint8_t	calc_checksum(struct icmp_packet *packet, uint16_t *res) {
 	while (sum > 0xFFFF) {
 		sum = (sum & 0xFFFF) + (sum >> 16);
 	}
+	printf("sum: %x02\n", sum);
 	*res = (uint16_t)~sum;
 	return 0;
 }
@@ -96,7 +99,7 @@ int main(int ac, char **av)
 			printf("Error on calc_checksum");
 			exit(1);
 		}
-		packet.checksum = checksum;
+		packet.checksum = htons(checksum);
 		print_packet_details(&packet);
 		print_packet_hex(&packet);
 
