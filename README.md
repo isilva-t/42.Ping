@@ -4,7 +4,7 @@ Status: 🚧 In Development
 
 Replication of GNU ping in C to learn about ICMP packets
 
-![ping](ping.jpg)
+![ping](ftping.jpg)
 
 ### TODO Checklist
 
