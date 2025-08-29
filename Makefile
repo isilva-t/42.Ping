@@ -9,7 +9,8 @@ OBJDIR = obj
 SOURCES = ft_ping.c \
 	  00_handle_options.c \
 	  10_resolve_target.c \
-	  90_helpers.c
+	  90_helpers.c \
+	  91_print_fts.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJDIR)/%.o)
 

@@ -20,13 +20,14 @@
 #include <arpa/inet.h>
 
 // ICMP packet structure
+#define DATA_LEN 8
 struct icmp_packet {
 	uint8_t		type;		// ICMP type (8 for echo request)
 	uint8_t		code;		// ICMP code (0 for echo request)  
 	uint16_t	checksum;	// Checksum (calculated)
 	uint16_t	id;			// Identifier (usually process ID)
 	uint16_t	sequence;	// Sequence number
-	char		data[16];	// Data payload
+	char		data[DATA_LEN];	// Data payload
 } __attribute__((packed));
 
 #define ICMP_ECHO_REQUEST	8
@@ -46,6 +47,10 @@ struct ping_flags {
 //90_helpers
 void	print_help_exit(char *av0);
 void	help_and_exit(); 
+
+//91_print_fts
+void	print_packet_details(struct icmp_packet *packet);
+void	print_packet_hex(struct icmp_packet *packet);
 
 //00_handle_options
 void	handle_options(int ac, char **av, struct ping_flags *flags);
