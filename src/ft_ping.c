@@ -24,7 +24,7 @@ void	create_icmp_packet(struct icmp_packet *packet, uint16_t seq) {
 	packet->type = ICMP_ECHO_REQUEST;
 	packet->code = 0;
 	packet->checksum = 0;
-	packet->id = getpid();
+	packet->id = htons(getpid());
 	packet->sequence = seq;
 
 	for (int i = 0; i < DATA_LEN ; i++) {
@@ -40,7 +40,7 @@ uint8_t	calc_checksum(struct icmp_packet *packet, uint16_t *res) {
 	}
 	uint32_t sum = 0;
 	uint8_t *data = (uint8_t*)packet;
-	uint32_t len = sizeof(struct icmp_packet) >> 1;
+	uint32_t len = sizeof(struct icmp_packet);
 	uint32_t i = 0;
 
 	printf("len = %d\n", len);
@@ -49,7 +49,6 @@ uint8_t	calc_checksum(struct icmp_packet *packet, uint16_t *res) {
 		two_byte_word = 0;
 		two_byte_word = (data[i] << 8) | data[i + 1];
 		sum += two_byte_word;
-		printf("i: %d\n", i);
 	}
 
 	if (i < len) {
@@ -105,8 +104,10 @@ int main(int ac, char **av)
 
 		signal(SIGINT, handle_sigint);
 		while(keep_running) {
+			/// future implementation, exits for now, i want it!
 			printf("here will be info on result\n");
 			exit(0);
+			////
 			sleep(1);
 		}
 		close(sockfd);

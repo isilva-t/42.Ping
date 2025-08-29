@@ -16,7 +16,7 @@ void	print_packet_details(struct icmp_packet *packet) {
 }
 
 void	print_packet_hex(struct icmp_packet *packet) {
-	printf("Raw packet bytes:\n");
+	printf("\nRaw packet bytes:\n");
 	unsigned char *bytes = (unsigned char *)packet;
 	for (size_t i = 0; i < sizeof(struct icmp_packet); i++) {
 		printf("%02x ", bytes[i]);
